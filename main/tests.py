@@ -19,5 +19,5 @@ class mainTest(TestCase):
         return self.item
     
     def test_create_item(self):
-        i = self.create_item()
-        self.assertTrue(isinstance(i, Product))
+        item_a = self.create_item()
+        self.assertTrue(isinstance(item_a, Product))
