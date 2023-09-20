@@ -91,7 +91,7 @@ Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan
     {% extends 'base.html' %}
 
         {% block content %}
-        <h1>Warkop Kalisetail</h1>
+        <h1>Wargo</h1>
         
         <h3>Appname: </h3>
         <p>{{ appname }}</p>
@@ -136,11 +136,17 @@ HTML berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di 
 
 - [x] **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
 - HTML
-  
+  ![image](https://github.com/neinakada/wargo/assets/119840206/75c54c5b-4632-499f-bdef-0cd22753d472)
+
 - XML
+![image](https://github.com/neinakada/wargo/assets/119840206/1a44501b-6c4d-4c05-9ab1-f591654a0197)
 
 - JSON
+![image](https://github.com/neinakada/wargo/assets/119840206/82ca7371-cd56-4c9f-a77a-0116a25edbb2)
 
 - XML by ID
+![image](https://github.com/neinakada/wargo/assets/119840206/1e9282ed-e9d4-4779-97cb-9b499e24d818)
 
 - JSON by ID
+![image](https://github.com/neinakada/wargo/assets/119840206/c914c819-8fcd-48be-b628-f366dcfcb459)
+
