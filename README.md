@@ -108,26 +108,9 @@ Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan
     - Membuat fungsi `show_json` pada `views.py` untuk mengambil product dan mengembalikannya dalam bentuk JSON
     - Membuat fungsi `show_xml_by_id` pada `views.py` untuk mengambil product dan mengembalikan data product berdasarkan ID dalam bentuk XML
     - Membuat fungsi `show_xml` pada `views.py` untuk mengambil product dan mengembalikan data product berdasarkan ID dalam bentuk JSON
-
-## Apa perbedaan antara form POST dan form GET dalam Django?
-- POST
-POST berguna untuk mengirimkan data secara langsung tanpa menampilkan datanya pada URL. POST cocok untuk digunakan dalam pengiriman data yang bersifat sensitif atau rahasia seperti password. POST tidak memiliki limit dalam pengiriman data sehingga cocok dalam pengiriman data yang kompleks ataupun besar.
-
-- GET
-GET digunakan untuk mengambil data dari server yang dikirim sebagai parameter kemudian data ditampilkan pada URL. Dari segi keamanan, POST lebih unggul dibandingkan GET. Selain itu, GET memiliki limit kapasitas data yang relatif kecil.
-
-## Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
-- XML
-XML berguna untuk menyimpan dan mengelola data dengan strukur yang kuat dan bersifat hierarkis. XML memiliki syntax yang ketat ditandai dengan aturan pembukaan dan penutupan tag. Dari segi keamanan, XML memiliki mekanisme bawaan seperti DTD dan XML untuk melindungi data.
-
-- JSON
-JSON digunakan untuk pertukaran data antar aplikasi dengan format yang sederhana dan mudah dimengerti manusia. JSON umumnya digunakan untuk pertukaran data antara user dan server dalam web development dan JavaScript based applications. Format syntax JSON lebih sederhana dibandingkan XML.
-
-- HTML
-HTML berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalamnya dan menampilkannya pada browser. HTML digunakan untuk mengatur konten seperti text, gambar, link, dan sebagainya. Karena tidak dirancang untuk pengiriman data terstuktur, keamanan dari HTML tergantung pada implementasi aplikasi. 
-
+      
 - [x] **Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.**
-    - Mengimport fungsi `create_product` dan menambahkan Path URL `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` pada `urlpatterns` di `urls.py` 
+    - Mengimport fungsi `create_product` dan menambahkan Path URL `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` pada `urlpatterns` di `urls.py` agar fungsi bisa digunakan 
     ```
     path('create-product', create_product, name='create_product'),
     path('xml/', show_xml, name='show_xml'),
@@ -135,6 +118,30 @@ HTML berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di 
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
     ```
+    
+## Apa perbedaan antara form POST dan form GET dalam Django?
+- POST
+berguna untuk mengirimkan data secara langsung tanpa menampilkan datanya pada URL. POST cocok untuk digunakan dalam pengiriman data yang bersifat sensitif atau rahasia seperti password. POST tidak memiliki limit dalam pengiriman data sehingga cocok dalam pengiriman data yang kompleks ataupun besar.
+
+- GET
+digunakan untuk mengambil data dari server yang dikirim sebagai parameter kemudian data ditampilkan pada URL. Dari segi keamanan, POST lebih unggul dibandingkan GET. Selain itu, GET memiliki limit kapasitas data yang relatif kecil.
+
+## Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+- XML
+berguna untuk menyimpan dan mengelola data dengan strukur yang kuat dan bersifat hierarkis. XML memiliki syntax yang ketat ditandai dengan aturan pembukaan dan penutupan tag. Dari segi keamanan, XML memiliki mekanisme bawaan seperti DTD dan XML untuk melindungi data.
+
+- JSON
+digunakan untuk pertukaran data antar aplikasi dengan format yang sederhana dan mudah dimengerti manusia. JSON umumnya digunakan untuk pertukaran data antara user dan server dalam web development dan JavaScript based applications. Format syntax JSON lebih sederhana dibandingkan XML.
+
+- HTML
+berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalamnya dan menampilkannya pada browser. HTML digunakan untuk mengatur konten seperti text, gambar, link, dan sebagainya. Karena tidak dirancang untuk pengiriman data terstuktur, keamanan dari HTML tergantung pada implementasi aplikasi. 
+
+## Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+- JSON memiliki format yang ringan, lebih kecil dibandingkan XML
+- JSON memiliki struktur kode yang sederhana sehingga mudah dibaca oleh manusia
+- JSON memiliki kompatibilitas yang tinggi dengan banyak programming language meliputi JavaScript, Python, C++, Ruby, dan sebagainya
+- JSON memiliki keamanan yang lebih baik dibandingkan XML karena tidak mendukung eksekusi kode
+- JSON mudah untuk dikembangkan dan diintegrasikan pada bahasa pemrograman
 
 - [x] **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
 - HTML
