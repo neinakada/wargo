@@ -12,7 +12,8 @@ def show_main(request):
     context = {
         'name': 'Neina Akada Maula', 
         'class': 'PBP E', 
-        'products': products
+        'products': products,
+        'jumlah_product': products.count()
     }
 
     return render(request, "main.html", context)

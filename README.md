@@ -67,3 +67,80 @@ Virtual environment berguna untuk mengisolasi environment update Python kita dar
 
 **Perbedaan:**
 Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan data dengan tampilan. MVC menggunakan Controller untuk menghubungkan data dengan tampilan secara manual. Sedangkan MVT menggunakan View untuk menghubungkan data dengan tampilan secara otomatis. Sementara MVVM menggunakan ViewModel untuk menghubungkan data dengan tampilan secara deklaratif
+
+## TUGAS 3
+- [x] **Membuat input form untuk menambahkan objek model pada app sebelumnya.**
+    - Membuat file `forms.py` di directory `main`
+    - Membuat fungsi `create_product` yang menerima parameter request pada `views.py` untuk mengelola input form
+    ```
+        def create_product(request):
+        form = ProductForm(request.POST or None)
+        
+        if form.is_valid() and request.method == "POST":
+            form.save()
+                return HttpResponseRedirect(reverse('main:show_main'))
+        
+        context = {'form': form}
+        return render(request, "create_product.html", context)
+    ```
+    - Jika input valid, data akan disave dengan `form.save` dan user akan dialihkan ke main page
+
+- [x] **Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
+    - Membuat file `base.html` sebagai kerangka webpage lalu mengintegrasikannya dengan menambahkan kode `'DIRS': [BASE_DIR / 'templates']` agar terdeteksi sebagai template
+    - Mengubah `main.html` pada subdirectory `templates` menjadi
+    {% extends 'base.html' %}
+
+        {% block content %}
+        <h1>Warkop Kalisetail</h1>
+        
+        <h3>Appname: </h3>
+        <p>{{ appname }}</p>
+        
+        <h5>Name:</h5>
+        <p>{{ nama }}</p>
+        
+        <h5>Kelas:</h5>
+        <p>{{ kelas }}</p>
+        {% endblock content %}
+    - Membuat fungsi `show_xml` pada `views.py` untuk mengambil product dan mengembalikannya dalam bentuk XML
+    - Membuat fungsi `show_json` pada `views.py` untuk mengambil product dan mengembalikannya dalam bentuk JSON
+    - Membuat fungsi `show_xml_by_id` pada `views.py` untuk mengambil product dan mengembalikan data product berdasarkan ID dalam bentuk XML
+    - Membuat fungsi `show_xml` pada `views.py` untuk mengambil product dan mengembalikan data product berdasarkan ID dalam bentuk JSON
+
+## Apa perbedaan antara form POST dan form GET dalam Django?
+- POST
+POST berguna untuk mengirimkan data secara langsung tanpa menampilkan datanya pada URL. POST cocok untuk digunakan dalam pengiriman data yang bersifat sensitif atau rahasia seperti password. POST tidak memiliki limit dalam pengiriman data sehingga cocok dalam pengiriman data yang kompleks ataupun besar.
+
+- GET
+GET digunakan untuk mengambil data dari server yang dikirim sebagai parameter kemudian data ditampilkan pada URL. Dari segi keamanan, POST lebih unggul dibandingkan GET. Selain itu, GET memiliki limit kapasitas data yang relatif kecil.
+
+## Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+- XML
+XML berguna untuk menyimpan dan mengelola data dengan strukur yang kuat dan bersifat hierarkis. XML memiliki syntax yang ketat ditandai dengan aturan pembukaan dan penutupan tag. Dari segi keamanan, XML memiliki mekanisme bawaan seperti DTD dan XML untuk melindungi data.
+
+- JSON
+JSON digunakan untuk pertukaran data antar aplikasi dengan format yang sederhana dan mudah dimengerti manusia. JSON umumnya digunakan untuk pertukaran data antara user dan server dalam web development dan JavaScript based applications. Format syntax JSON lebih sederhana dibandingkan XML.
+
+- HTML
+HTML berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalamnya dan menampilkannya pada browser. HTML digunakan untuk mengatur konten seperti text, gambar, link, dan sebagainya. Karena tidak dirancang untuk pengiriman data terstuktur, keamanan dari HTML tergantung pada implementasi aplikasi. 
+
+- [x] **Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.**
+    - Mengimport fungsi `create_product` dan menambahkan Path URL `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` pada `urlpatterns` di `urls.py` 
+    ```
+    path('create-product', create_product, name='create_product'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json')
+    path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    ```
+
+- [x] **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
+- HTML
+  
+- XML
+
+- JSON
+
+- XML by ID
+
+- JSON by ID
