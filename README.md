@@ -88,10 +88,11 @@ Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan
 - [x] **Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
     - Membuat file `base.html` sebagai kerangka webpage lalu mengintegrasikannya dengan menambahkan kode `'DIRS': [BASE_DIR / 'templates']` agar terdeteksi sebagai template
     - Mengubah `main.html` pada subdirectory `templates` menjadi
+  ```
     {% extends 'base.html' %}
 
         {% block content %}
-        <h1>Wargo</h1>
+        <h1>WarGo</h1>
         
         <h3>Appname: </h3>
         <p>{{ appname }}</p>
@@ -102,6 +103,7 @@ Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan
         <h5>Kelas:</h5>
         <p>{{ kelas }}</p>
         {% endblock content %}
+  ```
     - Membuat fungsi `show_xml` pada `views.py` untuk mengambil product dan mengembalikannya dalam bentuk XML
     - Membuat fungsi `show_json` pada `views.py` untuk mengambil product dan mengembalikannya dalam bentuk JSON
     - Membuat fungsi `show_xml_by_id` pada `views.py` untuk mengambil product dan mengembalikan data product berdasarkan ID dalam bentuk XML
