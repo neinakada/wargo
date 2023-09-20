@@ -156,7 +156,7 @@ berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalam
 - JSON by ID
 ![image](https://github.com/neinakada/wargo/assets/119840206/c914c819-8fcd-48be-b628-f366dcfcb459)
 
-- [x] Menambahkan pesan "Kamu menyimpan X item pada aplikasi ini" (dengan X adalah jumlah data item yang tersimpan pada aplikasi) dan menampilkannya di atas tabel data.
-      - Menambahkan `'jumlah_product': products.count()` pada `views.py` yang berguna untuk menghitung berapa banyak product yang ditambahkan pada aplikasi
-      - Mengedit file `main.html` dengan menambahkan tulisan `"Kamu menyimpan {{ jumlah_product }} item pada aplikasi ini"`
-      - Jumlah product akan otomatis terupdate setiap ada product baru yang ditambahkan
+- [x] **Menambahkan pesan "Kamu menyimpan X item pada aplikasi ini" (dengan X adalah jumlah data item yang tersimpan pada aplikasi) dan menampilkannya di atas tabel data.**
+- Menambahkan `'jumlah_product': products.count()` pada `views.py` yang berguna untuk menghitung berapa banyak product yang ditambahkan pada aplikasi
+- Mengedit file `main.html` dengan menambahkan tulisan `"Kamu menyimpan {{ jumlah_product }} item pada aplikasi ini"`
+- Jumlah product akan otomatis terupdate setiap ada product baru yang ditambahkan
