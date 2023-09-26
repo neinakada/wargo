@@ -43,30 +43,31 @@ WarGo: https://wargo.adaptable.app/
     - Memasukkan perintah `python manage.py migrate && gunicorn shopping_list.wsgi` pada bagian Start Command
     - Mendeploy aplikasi
 
-### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`.
-<img src='/assets/bagan.png'>
+- [x] **Menjawab pertanyaan**
+    - Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`.
+    <img src='/assets/bagan.png'>
 
-#### Jelaskan mengapa kita menggunakan ***virtual environment?*** Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan ***virtual environment***?
-Virtual environment berguna untuk mengisolasi environment update Python kita dari *environment system* yang ada. Hal ini memungkinkan instalasi paket dan modul yang diperlukan tanpa mengganggu sistem. Selain itu, virtual environment juga mempermudah kita untuk membagikan aplikasi maupun menduplikatnya. Meskipun mungkin memungkinkan untuk mengembangkan aplikasi web Django tanpa virtual environment, hal ini tidak dianjurkan karena Django memerlukan banyak paket dan modul yang dapat menyebabkan konflik atau masalah kompatibilitas jika diinstal langsung pada sistem. Selain itu, tanpa *virtual environment*, memindahkan atau menduplikat aplikasi menjadi lebih sulit karena harus menginstall ulang semua *dependencies* secara manual. Oleh karena itu, menggunakan *virtual environment* adalah pendekatan yang lebih baik untuk mengembangkan aplikasi.
+    - Jelaskan mengapa kita menggunakan ***virtual environment?*** Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan ***virtual environment***?
+    Virtual environment berguna untuk mengisolasi environment update Python kita dari *environment system* yang ada. Hal ini memungkinkan instalasi paket dan modul yang diperlukan tanpa mengganggu sistem. Selain itu, virtual environment juga mempermudah kita untuk membagikan aplikasi maupun menduplikatnya. Meskipun mungkin memungkinkan untuk mengembangkan aplikasi web Django tanpa virtual environment, hal ini tidak dianjurkan karena Django memerlukan banyak paket dan modul yang dapat menyebabkan konflik atau masalah kompatibilitas jika diinstal langsung pada sistem. Selain itu, tanpa *virtual environment*, memindahkan atau menduplikat aplikasi menjadi lebih sulit karena harus menginstall ulang semua *dependencies* secara manual. Oleh karena itu, menggunakan *virtual environment* adalah pendekatan yang lebih baik untuk mengembangkan aplikasi.
 
-#### Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
-- **Model-View-Controller (MVC):**
-    - **Model:** Menyimpan data dan logika dalam aplikasi.
-    - **View:** Menghandle tampilan grafis dengan menampilkan data dari model.
-    - **Controller:** Mengatur alur aplikasi dengan menyalurkan input pada View untuk diolah dengan Model.
+    - Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
+        - **Model-View-Controller (MVC):**
+            - **Model:** Menyimpan data dan logika dalam aplikasi.
+            - **View:** Menghandle tampilan grafis dengan menampilkan data dari model.
+            - **Controller:** Mengatur alur aplikasi dengan menyalurkan input pada View untuk diolah dengan Model.
 
-- **Model-View-Template (MVT):**
-    - **Model:** Menyimpan data dan logika dalam aplikasi.
-    - **View:** Interface aplikasi.
-    - **Template:** Menggambarkan cara menampilkan data pada View dari Model. 
+        - **Model-View-Template (MVT):**
+            - **Model:** Menyimpan data dan logika dalam aplikasi.
+            - **View:** Interface aplikasi.
+            - **Template:** Menggambarkan cara menampilkan data pada View dari Model. 
 
-- **Model-View-ViewModel (MVVM):**
-    - **Model:** Menyimpan data dan logika dalam aplikasi.
-    - **View:** Interface aplikasi.
-    - **ViewModel:** Memperantarai Model dan View dengan memformat data yang diambil dari Model untuk mempermudah penggunaan oleh View..
+        - **Model-View-ViewModel (MVVM):**
+            - **Model:** Menyimpan data dan logika dalam aplikasi.
+            - **View:** Interface aplikasi.
+            - **ViewModel:** Memperantarai Model dan View dengan memformat data yang diambil dari Model untuk mempermudah penggunaan oleh View.
 
-**Perbedaan:**
-Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan data dengan tampilan. MVC menggunakan Controller untuk menghubungkan data dengan tampilan secara manual. Sedangkan MVT menggunakan View untuk menghubungkan data dengan tampilan secara otomatis. Sementara MVVM menggunakan ViewModel untuk menghubungkan data dengan tampilan secara deklaratif
+            **Perbedaan:**
+            Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan data dengan tampilan. MVC menggunakan Controller untuk menghubungkan data dengan tampilan secara manual. Sedangkan MVT menggunakan View untuk menghubungkan data dengan tampilan secara otomatis. Sementara MVVM menggunakan ViewModel untuk menghubungkan data dengan tampilan secara deklaratif
 
 ## TUGAS 3
 - [x] **Membuat input form untuk menambahkan objek model pada app sebelumnya.**
@@ -116,29 +117,22 @@ Perbedaan antara MVC, MVT, dan MVVM secara umum adalah cara mereka menghubungkan
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
     ```
     
-#### Apa perbedaan antara form POST dan form GET dalam Django?
-- POST
-berguna untuk mengirimkan data secara langsung tanpa menampilkan datanya pada URL. POST cocok untuk digunakan dalam pengiriman data yang bersifat sensitif atau rahasia seperti password. POST tidak memiliki limit dalam pengiriman data sehingga cocok dalam pengiriman data yang kompleks ataupun besar.
+- [x] **Menjawab pertanyaan**
+    - Apa perbedaan antara form POST dan form GET dalam Django?
+        - **POST** berguna untuk mengirimkan data secara langsung tanpa menampilkan datanya pada URL. POST cocok untuk digunakan dalam pengiriman data yang bersifat sensitif atau rahasia seperti password. POST tidak memiliki limit dalam pengiriman data sehingga cocok dalam pengiriman data yang kompleks ataupun besar.
+        - **GET** digunakan untuk mengambil data dari server yang dikirim sebagai parameter kemudian data ditampilkan pada URL. Dari segi keamanan, POST lebih unggul dibandingkan GET. Selain itu, GET memiliki limit kapasitas data yang relatif kecil.
 
-- GET
-digunakan untuk mengambil data dari server yang dikirim sebagai parameter kemudian data ditampilkan pada URL. Dari segi keamanan, POST lebih unggul dibandingkan GET. Selain itu, GET memiliki limit kapasitas data yang relatif kecil.
+    - Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+        - **XML** berguna untuk menyimpan dan mengelola data dengan strukur yang kuat dan bersifat hierarkis. XML memiliki syntax yang ketat ditandai dengan aturan pembukaan dan penutupan tag. Dari segi keamanan, XML memiliki mekanisme bawaan seperti DTD dan XML untuk melindungi data.
+        - **JSON** digunakan untuk pertukaran data antar aplikasi dengan format yang sederhana dan mudah dimengerti manusia. JSON umumnya digunakan untuk pertukaran data antara user dan server dalam web development dan JavaScript based applications. Format syntax JSON lebih sederhana dibandingkan XML.
+        - **HTML** berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalamnya dan menampilkannya pada browser. HTML digunakan untuk mengatur konten seperti text, gambar, link, dan sebagainya. Karena tidak dirancang untuk pengiriman data terstuktur, keamanan dari HTML tergantung pada implementasi aplikasi. 
 
-#### Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
-- XML
-berguna untuk menyimpan dan mengelola data dengan strukur yang kuat dan bersifat hierarkis. XML memiliki syntax yang ketat ditandai dengan aturan pembukaan dan penutupan tag. Dari segi keamanan, XML memiliki mekanisme bawaan seperti DTD dan XML untuk melindungi data.
-
-- JSON
-digunakan untuk pertukaran data antar aplikasi dengan format yang sederhana dan mudah dimengerti manusia. JSON umumnya digunakan untuk pertukaran data antara user dan server dalam web development dan JavaScript based applications. Format syntax JSON lebih sederhana dibandingkan XML.
-
-- HTML
-berguna untuk merancang suatu webpage termasuk mengatur konten yang ada di dalamnya dan menampilkannya pada browser. HTML digunakan untuk mengatur konten seperti text, gambar, link, dan sebagainya. Karena tidak dirancang untuk pengiriman data terstuktur, keamanan dari HTML tergantung pada implementasi aplikasi. 
-
-#### Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
-- JSON memiliki format yang ringan, lebih kecil dibandingkan XML
-- JSON memiliki struktur kode yang sederhana sehingga mudah dibaca oleh manusia
-- JSON memiliki kompatibilitas yang tinggi dengan banyak programming language meliputi JavaScript, Python, C++, Ruby, dan sebagainya
-- JSON memiliki keamanan yang lebih baik dibandingkan XML karena tidak mendukung eksekusi kode
-- JSON mudah untuk dikembangkan dan diintegrasikan pada bahasa pemrograman
+    - Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+        - JSON memiliki format yang ringan, lebih kecil dibandingkan XML
+        - JSON memiliki struktur kode yang sederhana sehingga mudah dibaca oleh manusia
+        - JSON memiliki kompatibilitas yang tinggi dengan banyak programming language meliputi JavaScript, Python, C++, Ruby, dan sebagainya
+        - JSON memiliki keamanan yang lebih baik dibandingkan XML karena tidak mendukung eksekusi kode
+        - JSON mudah untuk dikembangkan dan diintegrasikan pada bahasa pemrograman
 
 - [x] **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
     - HTML
