@@ -309,10 +309,11 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
 
  - [x] **Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.**
     - akada
-    ![Alt text](image.png)
+    ![image](https://github.com/neinakada/wargo/assets/119840206/9c4ee661-b46a-4419-9401-aebfabb574da)
 
     - neina
-    ![Alt text](image-1.png)
+    ![image](https://github.com/neinakada/wargo/assets/119840206/e08dbd19-10e3-405d-82db-64ba7b95fd8c)
+
 
  - [x] **Menghubungkan model Item dengan User.**
     - Menambahkan kode `from django.contrib.auth.models import User` pada `models.py` yang ada di subdirektori `main`
