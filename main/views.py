@@ -38,6 +38,27 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
+def hapus_product(request, id):
+    Product.objects.filter(pk=id).delete()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+
+def tambah_amount(request, id):
+    product = Product.objects.get(id=id)
+    product.amount += 1
+    product.save()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+
+def kurang_amount(request,id):
+    product = Product.objects.get(id=id)
+    
+    if (product.amount != 0):
+        product.amount -= 1
+        product.save()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+
 def show_xml(request):
     data = Product.objects.all()
 

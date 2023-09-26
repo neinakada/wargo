@@ -26,8 +26,28 @@
             <td>{{product.name}}</td>
             <td>{{product.amount}}</td>
             <td>{{product.description}}</td>
+            
+            <td><a href="{% url 'main:tambah_amount' product.id %}">
+                <button>
+                    + Product
+                </button>
+            </a></td>
+
+           <td><a href="{% url 'main:kurang_amount' product.id %}">
+                <button>
+                    - Product
+                </button>
+            </a></td>
+
+            <td><a href="{% url 'main:hapus_product' product.id %}">
+                <button>
+                    Hapus Product
+                </button>
+            </a></td>
         </tr>
     {% endfor %}
+
+    
 </table>
 
 <br />

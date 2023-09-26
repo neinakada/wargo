@@ -4,7 +4,7 @@
 ## Link Adaptable
 WarGo: https://wargo.adaptable.app/
 
-#### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
+## TUGAS 2
 - [x] **Membuat sebuah proyek Django baru.**
     - Membuat *virtual environment* dengan mengetikkan ```python -m venv env``` pada shell atau command prompt.
     - Mengaktifkan *virtual environment* dengan mengetikkan ```env\Scripts\activate```
@@ -401,3 +401,82 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
         - **Masalah privasi** karena cookies dapat disalahgunakan untuk melacak perilaku user dan mengumpulkan informasi pribadi
         - **_Cross-Site Request Forgery_** dimana penyerang memaksa _authenticated user_ untuk melakukan sebuah aksi di suatu situs web.
         - **_Cross-Site Scripting_** dimana penyerang menyisipkan script berbahaya ke dalam web yang dilihat oleh user lain.
+
+- [x] **[BONUS] Tambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu.**
+    - Menambahkan function `kurang_amount` dan `tambah_amount` pada `views.py`
+    ```
+    ...
+    def tambah_amount(request, id):
+        product = Product.objects.get(id=id)
+        product.amount += 1
+        product.save()
+        response = HttpResponseRedirect(reverse("main:show_main"))
+        return response
+
+    def kurang_amount(request,id):
+        product = Product.objects.get(id=id)
+        
+        if (product.amount != 0):
+            product.amount -= 1
+            product.save()
+        response = HttpResponseRedirect(reverse("main:show_main"))
+        return response
+    ...
+    ```
+    - Mengimport function pada `urls.py` yang ada di subdirektori `main`
+    ```
+    from main.views import kurang_amount, tambah_amount
+    ```
+    - Menambahkan path url ketiga function pada `urlpatterns` di `urls.py`  
+    ```
+    path('tambah_amount/<int:id>', tambah_amount, name='tambah_amount'),
+    path('kurang_amount/<int:id>', kurang_amount, name='kurang_amount'),
+    ```
+    - Menambahkan button pada `main.html`
+    ```
+    ...
+        <td><a href="{% url 'main:tambah_amount' product.id %}">
+            <button>
+                + Product
+            </button>
+        </a></td>
+
+        <td><a href="{% url 'main:kurang_amount' product.id %}">
+            <button>
+                - Product
+            </button>
+        </a></td>
+
+        <td><a href="{% url 'main:hapus_product' product.id %}">
+            <button>
+                Hapus Product
+            </button>
+        </a></td>
+    ...
+    ```
+- [x] **[BONUS] Tambahkan tombol dan fungsi untuk menghapus suatu objek dari inventori.**
+    - Menambahkan function `hapus_product` pada `views.py`
+    ```
+    def hapus_product(request, id):
+    Product.objects.filter(pk=id).delete()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+    ```
+    - Mengimport function `hapus_product`
+    ```
+    from main.views import hapus_product
+    ```
+    - Menambahkan path URL pada `urlpatterns` di `urls.py`
+    ```
+    path('hapus_product/<int:id>', hapus_product, name='hapus_product'),
+    ```
+    - Menambahkan button Hapus Product pada `main.html`
+    ```
+    ...
+                <td><a href="{% url 'main:hapus_product' product.id %}">
+            <button>
+                Hapus Product
+            </button>
+        </a></td>
+    ...
+    ```
