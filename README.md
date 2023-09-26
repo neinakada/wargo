@@ -178,7 +178,7 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
             context = {'form':form}
             return render(request, 'register.html', context)
         ```
-        - Membuat file `register.html` pada folder `templates`
+    - Membuat file `register.html` pada folder `templates`
         ```
         {% extends 'base.html' %}
 
@@ -307,12 +307,14 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
     - Mengimport fungsi dengan menambahkan `from main.views import logout_user` pada `urls.py` yang ada di subdirektori `main`
     - Menambahkan `path('logout/', login_user, name='logout'),` ke `urlpatterns` agar fungsi dapat diakses
 
+
  - [x] **Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.**
     - akada
     ![image](https://github.com/neinakada/wargo/assets/119840206/9c4ee661-b46a-4419-9401-aebfabb574da)
 
     - neina
     ![image](https://github.com/neinakada/wargo/assets/119840206/e08dbd19-10e3-405d-82db-64ba7b95fd8c)
+
 
 
  - [x] **Menghubungkan model Item dengan User.**
@@ -351,6 +353,7 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
     - Mengetik `1` untuk memberikan ID 1 pada user pertama yang telah terdaftare
     - Mengaplikasikan migrasi dengan mengetikkan `python manage.py migrate` pada terminal
 
+
  - [x] **Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.**
     - Mengimport `HttpResponseRedirect`, `reverse`, dan `datetime`
     ```
@@ -379,6 +382,7 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
     ```
     - Menambahkan `<h5>Sesi terakhir login: {{ last_login }}</h5>` pada `main.html` untuk menampilkan data last login
 
+
  - [x] **Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).**
 
     - **Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?**
@@ -402,6 +406,7 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
         - **Masalah privasi** karena cookies dapat disalahgunakan untuk melacak perilaku user dan mengumpulkan informasi pribadi
         - **_Cross-Site Request Forgery_** dimana penyerang memaksa _authenticated user_ untuk melakukan sebuah aksi di suatu situs web.
         - **_Cross-Site Scripting_** dimana penyerang menyisipkan script berbahaya ke dalam web yang dilihat oleh user lain.
+
 
 - [x] **[BONUS] Tambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu.**
     - Menambahkan function `kurang_amount` dan `tambah_amount` pada `views.py`
@@ -447,14 +452,9 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
                 - Product
             </button>
         </a></td>
-
-        <td><a href="{% url 'main:hapus_product' product.id %}">
-            <button>
-                Hapus Product
-            </button>
-        </a></td>
     ...
     ```
+    
 - [x] **[BONUS] Tambahkan tombol dan fungsi untuk menghapus suatu objek dari inventori.**
     - Menambahkan function `hapus_product` pada `views.py`
     ```
