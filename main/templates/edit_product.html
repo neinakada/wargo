@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-    <title>Add New Product</title>
+    <title>Edit Product</title>
 {% endblock meta %}
 
 {% block content %}
@@ -12,7 +12,7 @@
         margin: 0 auto;
     }
 
-    .add {
+    .edit {
         text-align: center;
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
@@ -62,7 +62,7 @@
 
 </style>
 
-<div class="add">
+<div class="edit">
     <h1>Edit Product</h2>
 
     <div class="form-container">
@@ -77,7 +77,7 @@
             <label for="description">Description</label>
             {{ form.description }}
             <br><br>
-            <input class="btn edit_btn" type="submit" value="Add Product"/>
+            <input class="btn edit_btn" type="submit" value="Edit Product"/>
         </form>
     </div>
 </div>

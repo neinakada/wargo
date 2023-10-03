@@ -481,3 +481,62 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
         </a></td>
     ...
     ```
+
+## TUGAS 5
+
+ - [x] **Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.**
+    - Mengatur alignment text agar berposisi di tengah dengan menambahkan `text-align: center`
+    - Mengatur font agar menjadi poppins dengan menambahkan `font-family: poppins`
+    - Menambahkan `margin: 0 auto` untuk mengatur elemen ke tengah horizontal
+    - Mengubah font yang dibutuhkan untuk menjadi bold dengan menambahkan `font-weight: bold`
+    - Mengatur warna background dari element dengan menambahkan kode `background-color <hexcode warna>`
+
+ - [x] **Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.**
+    - Mengatur alignment text dengan menambahkan `text-align: <posisi>`
+    - Mengatur font agar menjadi poppins dengan menambahkan `font-family: poppins`
+    - Menambahkan navigation bar
+    - Mengubah font yang dibutuhkan untuk menjadi bold dengan menambahkan `font-weight: bold`
+    - Mengatur warna background dari element dengan menambahkan kode `background-color <hexcode warna>`
+ 
+ - [x] **Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).**
+
+    - **Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.**
+    CSS selectors terbagi menjadi lima kategori meliputi
+        - Simple selectors: Men*select* element berdasarkan nama, id, atau class
+        - Combinator selectors: Men*select* elements berdasarkan *specific relationship* diantaranya
+        - Pseudo-class selectors: Men*select* elements berdasarkan *state* tertentu
+        - Pseudo-elements selectors: Men*select* and menata elements
+        - Attribute selectors: Men*select* elements berdasarkan attribute atau value dari attributenya
+
+
+    - **Jelaskan HTML5 Tag yang kamu ketahui.**
+        - <!DOCTYPE>: Menentukan jenis dokumen HTML
+        - <html>: Menandai awal dan akhir dari dokumen HTML
+        - <head>: Menyediakan informasi tentang dokumen HTML
+        - <title>: Menentukan judul untuk dokumen HTML
+        - <body>: Menandai awal dan akhir dari isi dokumen HTML
+        - <h1> - <h6>: Menandai judul dari dokumen HTML dengan ukuran yang berbeda-beda
+        - <p>: Menandai paragraf dalam dokumen HTML
+        - <a>: Membuat hyperlink ke page lain atau email address
+        - <img>: Menampilkan gambar dalam dokumen HTML
+        - <button>: Menandai tombol yang dapat diklik
+        - <div>: Menandai sebuah section
+
+    - **Jelaskan perbedaan antara margin dan padding.**
+        **Margin**
+        - Margin merupakan ruang di luar batas elemen
+        - Margin berguna untuk mengatur jarak antar elemen
+        - Margin memisahkan blok dari blok yang berdekatan
+        - Margin tidak meliputi background dan background color
+
+        **Padding**
+        - Padding adalah ruang di dalam batas 
+        - Padding berguna untuk menambah ruang internal sebuah elemen
+        - Padding memisahkan konten dari batas
+        - Padding meliputi gambar  dan warna background yang diterapkan di sekitar content
+
+    - **Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?**
+    **Tailwind** merupakan kerangka kerja CSS yang lebih berfokus pada penggunaan utility yang menyediakan pre-designed widgets yang dapat membantu developers untuk membuat situs dari awal. Tailwind ditulis menggunakan bahasa pemrograman PostCSS dan CSS.
+    **Bootstrap** merupakan sebuah kerangka kerja yang berguna unutuk mengembangkan suatu web berdasarkan framework CSS. Bootstrap menyediakan template interface seperti navigation, typography, buttons, dan forms. Bootstrap dirancang menggunakan bahasa pemrograman JavaScript dan HTML.
+
+- [x] **[BONUS] Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.**

@@ -1,69 +1,162 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>WarGo</h1>
+<style>
+    h1,h2,h3,h4, h5, p, th, td, a, button {
+        font-family: 'poppins', sans-serif;
+    }
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+    button{
+        display:inline-flex;
+        height: 44px;
+        padding: 4px, 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 12px;
+        background-color: #3FCCD4;
+        color: #fff;
+    }
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+
+    .center-table {
+        text-align: center;
+        margin: 0 auto;
+        width: 80%; 
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+
+    th {
+        background-color: #3FCCD4;
+        color: #FFFFFF;
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+    }
+
+    td {
+        background-color: rgba(63, 204, 212, 0.1);
+        color: #000000;
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+    }
+
+    table tr:last-child {
+        background-color: rgba(63, 204, 212, 0.312);
+        color: #000000;
+        border: 2px solid rgb(255, 255, 255);
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #bcf0f2; 
+        padding: 10px 20px;
+    }
+
+    .navbar-brand {
+        font-weight: 600;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-right p {
+        margin: 0 10px; 
+    }
+
+    .center-text {
+        text-align: center;
+        padding: 10px 20px;
+        
+
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">WarGo</a>
+    <div class="navbar-right">
+        <p>{{ name }}</p>
+        <p>{{ class }}</p>
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
+</nav>
+
+<div class="center-table">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+
+                <td>
+                    <a href="{% url 'main:tambah_amount' product.id %}">
+                        <button>
+                            +
+                        </button>
+                    </a>
+
+                    {{product.amount}}
+
+                    <a href="{% url 'main:kurang_amount' product.id %}">
+                        <button>
+                            -
+                        </button>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{% url 'main:hapus_product' product.id %}">
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="center-text">
 
     <p>Kamu telah menyimpan {{ jumlah_product }} item pada aplikasi ini</p>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Description</th>
-        
-    </tr>
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.amount}}</td>
-            <td>{{product.description}}</td>
-            
-            <td><a href="{% url 'main:tambah_amount' product.id %}">
-                <button>
-                    + Product
-                </button>
-            </a></td>
-
-           <td><a href="{% url 'main:kurang_amount' product.id %}">
-                <button>
-                    - Product
-                </button>
-            </a></td>
-
-            <td><a href="{% url 'main:hapus_product' product.id %}">
-                <button>
-                    Hapus Product
-                </button>
-            </a></td>
-        </tr>
-    {% endfor %}
-
-    
-</table>
-
-<br />
-
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
+    <p>Sesi terakhir login: {{ last_login }}</p>
+</div>
 
 {% endblock content %}
