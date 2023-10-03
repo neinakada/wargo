@@ -510,17 +510,17 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
 
 
     - **Jelaskan HTML5 Tag yang kamu ketahui.**
-        - <!DOCTYPE>: Menentukan jenis dokumen HTML
-        - <html>: Menandai awal dan akhir dari dokumen HTML
-        - <head>: Menyediakan informasi tentang dokumen HTML
-        - <title>: Menentukan judul untuk dokumen HTML
-        - <body>: Menandai awal dan akhir dari isi dokumen HTML
-        - <h1> - <h6>: Menandai judul dari dokumen HTML dengan ukuran yang berbeda-beda
-        - <p>: Menandai paragraf dalam dokumen HTML
-        - <a>: Membuat hyperlink ke page lain atau email address
-        - <img>: Menampilkan gambar dalam dokumen HTML
-        - <button>: Menandai tombol yang dapat diklik
-        - <div>: Menandai sebuah section
+        - !DOCTYPE: Menentukan jenis dokumen HTML
+        - html: Menandai awal dan akhir dari dokumen HTML
+        - head: Menyediakan informasi tentang dokumen HTML
+        - title: Menentukan judul untuk dokumen HTML
+        - body: Menandai awal dan akhir dari isi dokumen HTML
+        - h1 - h6: Menandai judul dari dokumen HTML dengan ukuran yang berbeda-beda
+        - p: Menandai paragraf dalam dokumen HTML
+        - a: Membuat hyperlink ke page lain atau email address
+        - img: Menampilkan gambar dalam dokumen HTML
+        - button: Menandai tombol yang dapat diklik
+        - div: Menandai sebuah section
 
     - **Jelaskan perbedaan antara margin dan padding.**
         **Margin**
