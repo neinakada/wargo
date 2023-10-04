@@ -6,6 +6,13 @@
 
 {% block content %}
 <style>
+    body {
+        background-image: url('https://img.freepik.com/free-photo/top-view-table-full-food_23-2149209253.jpg?w=1800&t=st=1696390564~exp=1696391164~hmac=dadc5eb6c541c45e55772820a1c200911b8517cf564c55a2c62691fefec18105');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    
     .login {
         display: flex;
         flex-direction: column;
@@ -13,6 +20,7 @@
         align-items: center;
         height: 100vh; 
         text-align: center;
+
     }
 
     .title-row {
@@ -27,7 +35,8 @@
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 20px;
-        width: 300px;
+        width: 325px;
+        padding-inline: 30px;
     }
 
     .register-link {
@@ -38,17 +47,20 @@
         background-color: #3FCCD4;
         color: aliceblue;
     }
+
 </style>
 
 <div class="login">
-    <div class="title-row">
-        <h1>Login</h1>
-    </div>
 
     <div class="login-fields">
         <form method="POST" action="">
             {% csrf_token %}
             <table>
+
+                <div class="title-row">
+                    <h1><b>Login</b></h1>
+                </div>
+
                 <tr>
                     <td>Username</td>
                     <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
@@ -73,11 +85,13 @@
                 {% endfor %}
             </ul>
         {% endif %}  
+
+        <div class="register-link">
+            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+        </div>
+
     </div>
 
-    <div class="register-link">
-        Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-    </div>
 </div>
 
 {% endblock content %}

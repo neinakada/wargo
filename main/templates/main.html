@@ -81,6 +81,18 @@
         
 
     }
+    a {
+        text-decoration: none;
+    }
+
+    .round_btn {
+        border-radius: 5px;
+    }
+
+    button {
+        border-color: none;
+        border: none;
+    }
 </style>
 
 <nav class="navbar navbar-expand-lg">
@@ -112,21 +124,22 @@
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
 
-                <td>
-                    <a href="{% url 'main:tambah_amount' product.id %}">
-                        <button>
-                            +
-                        </button>
-                    </a>
-
-                    {{product.amount}}
-
-                    <a href="{% url 'main:kurang_amount' product.id %}">
-                        <button>
-                            -
-                        </button>
-                    </a>
-                </td>
+                <div class="round_btn">
+                    <td>
+                        
+                        <a href="{% url 'main:kurang_amount' product.id %}">
+                            <button>
+                                -
+                            </button>
+                        </a>
+                        {{product.amount}}
+                        <a href="{% url 'main:tambah_amount' product.id %}">
+                            <button>
+                                +
+                            </button>
+                        </a>
+                    </td>
+                </div>
 
                 <td>
                     <a href="{% url 'main:hapus_product' product.id %}">
