@@ -737,15 +737,15 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
     - Lebih ringan dan cepat, tidak memerlukan library tambahan
     - Lebih mudah dalam penggunaan karena menggunakan Promise
     - Mendukung format JSON dan XML
-    - Tidak men _support_ fitur _cross-domain request_ pada browser yang lebih lama
-    - Tidak men _support_ fitur timeout pada browser lama
+    - Tidak mensupport fitur _cross-domain request_ pada browser yang lebih lama
+    - Tidak mensupport fitur timeout pada browser lama
 
     **jQuery**
     - Lebih berat karena memerlukan library tambahan
     - Lebih sulit penggunaannya
     - Mendukung format JSON, XML, dan HTML
-    - Men _support_ fitur _cross-domain request_ pada browser lama
-    - Men _support_ fitur timeout pada browser lama
+    - Mensupport fitur _cross-domain request_ pada browser lama
+    - Mensupport fitur timeout pada browser lama
 
     Menurut saya, Fetch API lebih baik karena lebih mudah digunakan karena menggunakan Promise. Selain itu, Fetch API lebih ringan sehingga lebih cepat dibandingkan dengan jQuery.  
 
