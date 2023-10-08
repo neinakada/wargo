@@ -6,7 +6,7 @@
         font-family: 'poppins', sans-serif;
     }
 
-    button{
+    button {
         display:inline-flex;
         height: 44px;
         padding: 4px, 16px;
@@ -16,18 +16,14 @@
         border-radius: 12px;
         background-color: #3FCCD4;
         color: #fff;
+        border-color: none;
+        border: none;
     }
-
 
     .center-table {
-        text-align: center;
-        margin: 0 auto;
-        width: 80%; 
-    }
-
-    table {
         border-collapse: collapse;
-        width: 100%;
+        margin: 0 auto;
+        width: 80%;
         margin-top: 20px;
         border-radius: 20px;
         margin-bottom: 16px;
@@ -57,7 +53,6 @@
     .navbar {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         background-color: #bcf0f2; 
         padding: 10px 20px;
     }
@@ -78,20 +73,35 @@
     .center-text {
         text-align: center;
         padding: 10px 20px;
-        
-
     }
+
     a {
         text-decoration: none;
     }
 
-    .round_btn {
-        border-radius: 5px;
+    .center-content {
+        text-align: center;
+        margin-top: 20px;
     }
 
-    button {
-        border-color: none;
+    .center-content button {
+        margin-bottom: 10px;
+    }
+    
+    .modal-title {
+        font-family: 'poppins', sans-serif;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        font-family: 'poppins', sans-serif;
+        background-color: #3FCCD4;
         border: none;
+        border-radius: 12px;
+    }
+
+    .col-form-label {
+        font-family: 'poppins', sans-serif;
     }
 </style>
 
@@ -108,68 +118,107 @@
     </div>
 </nav>
 
-<div class="center-table">
-    <table>
-        <tr>
+<table class="center-table" id="product_table"></table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center-content">
+    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+    <br />
+    <a>Sesi terakhir login: {{ last_login }}</a>
+</div>
+
+</br>
+
+<script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
             <th>Name</th>
             <th>Description</th>
             <th>Amount</th>
-            <th>Action</th>
-        </tr>
+            <th>Actions</th>
+        </tr>`
+        
+        products.forEach((item) => {
+            console.log(item)
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.amount}</td>
+            <td>
 
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+            <a href="edit-product/${item.pk}">
+                <button>
+                    Edit
+                </button>
+            </a>
 
-        {% for product in products %}
-            <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.description}}</td>
+            <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
+                Delete
+            </button>
 
-                <div class="round_btn">
-                    <td>
-                        
-                        <a href="{% url 'main:kurang_amount' product.id %}">
-                            <button>
-                                -
-                            </button>
-                        </a>
-                        {{product.amount}}
-                        <a href="{% url 'main:tambah_amount' product.id %}">
-                            <button>
-                                +
-                            </button>
-                        </a>
-                    </td>
-                </div>
+            </td>
+        </tr>`
+        })
 
-                <td>
-                    <a href="{% url 'main:hapus_product' product.id %}">
-                        <button>
-                            Delete
-                        </button>
-                    </a>
+        document.getElementById("product_table").innerHTML = htmlString
+    }
 
-                    <a href="{% url 'main:edit_product' product.pk %}">
-                        <button>
-                            Edit
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-</div>
+    refreshProducts()
 
-<div class="center-text">
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
 
-    <p>Kamu telah menyimpan {{ jumlah_product }} item pada aplikasi ini</p>
+        document.getElementById("form").reset()
+        return false
+    }
 
-    <a href="{% url 'main:create_product' %}">
-        <button>
-            Add New Product
-        </button>
-    </a>
+    function deleteProduct(pk) {
+        fetch(`/delete_product_ajax/${pk}`, {
+            method: 'DELETE',
+        }).then(refreshProducts);
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
 
-    <p>Sesi terakhir login: {{ last_login }}</p>
-</div>
-
+</script>
 {% endblock content %}

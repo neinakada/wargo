@@ -1,8 +1,8 @@
 ## Neina Akada Maula (2206827592)
 ## Pemrograman Berbasis Platform E
 
-## Link Adaptable
-WarGo: https://wargo.adaptable.app/
+## Link Aplikasi
+WarGo: https://neina-akada-tugas.pbp.cs.ui.ac.id/
 
 ## TUGAS 2
 - [x] **Membuat sebuah proyek Django baru.**
@@ -410,77 +410,75 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
 
 - [x] **[BONUS] Tambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu.**
     - Menambahkan function `kurang_amount` dan `tambah_amount` pada `views.py`
-    ```
-    ...
-    def tambah_amount(request, id):
-        product = Product.objects.get(id=id)
-        product.amount += 1
-        product.save()
-        response = HttpResponseRedirect(reverse("main:show_main"))
-        return response
-
-    def kurang_amount(request,id):
-        product = Product.objects.get(id=id)
-        
-        if (product.amount != 0):
-            product.amount -= 1
+        ```
+        ...
+        def tambah_amount(request, id):
+            product = Product.objects.get(id=id)
+            product.amount += 1
             product.save()
-        response = HttpResponseRedirect(reverse("main:show_main"))
-        return response
-    ...
-    ```
-    - Mengimport function pada `urls.py` yang ada di subdirektori `main`
-    ```
-    from main.views import kurang_amount, tambah_amount
-    ```
-    - Menambahkan path url ketiga function pada `urlpatterns` di `urls.py`  
-    ```
-    path('tambah_amount/<int:id>', tambah_amount, name='tambah_amount'),
-    path('kurang_amount/<int:id>', kurang_amount, name='kurang_amount'),
-    ```
-    - Menambahkan button pada `main.html`
-    ```
-    ...
-        <td><a href="{% url 'main:tambah_amount' product.id %}">
-            <button>
-                + Product
-            </button>
-        </a></td>
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            return response
 
-        <td><a href="{% url 'main:kurang_amount' product.id %}">
-            <button>
-                - Product
-            </button>
-        </a></td>
-    ...
-    ```
+        def kurang_amount(request,id):
+            product = Product.objects.get(id=id)
+            
+            if (product.amount != 0):
+                product.amount -= 1
+                product.save()
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            return response
+        ...
+        ```
+    - Mengimport function pada `urls.py` yang ada di subdirektori `main`
+        ```
+        from main.views import kurang_amount, tambah_amount
+        ```
+    - Menambahkan path url ketiga function pada `urlpatterns` di `urls.py`  
+        ```
+        path('tambah_amount/<int:id>', tambah_amount, name='tambah_amount'),
+        path('kurang_amount/<int:id>', kurang_amount, name='kurang_amount'),
+        ```
+    - Menambahkan button pada `main.html`
+        ```
+        ...
+            <td><a href="{% url 'main:tambah_amount' product.id %}">
+                <button>
+                    + Product
+                </button>
+            </a></td>
+
+            <td><a href="{% url 'main:kurang_amount' product.id %}">
+                <button>
+                    - Product
+                </button>
+            </a></td>
+        ...
+        ```
     
 - [x] **[BONUS] Tambahkan tombol dan fungsi untuk menghapus suatu objek dari inventori.**
     - Menambahkan function `hapus_product` pada `views.py`
-    ```
-    def hapus_product(request, id):
-    Product.objects.filter(pk=id).delete()
-    response = HttpResponseRedirect(reverse("main:show_main"))
-    return response
-    ```
+        ```
+        def hapus_product(request, id):
+        Product.objects.filter(pk=id).delete()
+        response = HttpResponseRedirect(reverse("main:show_main"))
+        return response
+        ```
     - Mengimport function `hapus_product`
-    ```
-    from main.views import hapus_product
-    ```
+        ```
+        from main.views import hapus_product
+        ```
     - Menambahkan path URL pada `urlpatterns` di `urls.py`
-    ```
-    path('hapus_product/<int:id>', hapus_product, name='hapus_product'),
-    ```
+        ```
+        path('hapus_product/<int:id>', hapus_product, name='hapus_product'),
+        ```
     - Menambahkan button Hapus Product pada `main.html`
-    ```
-    ...
-                <td><a href="{% url 'main:hapus_product' product.id %}">
-            <button>
-                Hapus Product
-            </button>
-        </a></td>
-    ...
-    ```
+        ```
+            <td><a href="{% url 'main:hapus_product' product.id %}">
+                <button>
+                    Hapus Product
+                </button>
+            </a></td>
+        ```
 
 ## TUGAS 5
 
@@ -540,3 +538,243 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
     **Bootstrap** merupakan sebuah kerangka kerja yang berguna unutuk mengembangkan suatu web berdasarkan framework CSS. Bootstrap menyediakan template interface seperti navigation, typography, buttons, dan forms. Bootstrap dirancang menggunakan bahasa pemrograman JavaScript dan HTML.
 
 - [x] **[BONUS] Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.**
+
+    Menambahkan kode dibawah pada bagian `<style>` di file `main.html`
+    ```
+    table tr:last-child {
+        background-color: rgba(63, 204, 212, 0.312); //line untuk mengubah background color yang berbeda
+        color: #000000;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    ```
+
+## TUGAS 6
+
+- [x] **Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX**
+    - [x] **AJAX GET**
+        - [x] **Ubahlah kode tabel data item agar dapat mendukung AJAX GET.**
+            - Menghapus kode tabel yang telah ada sebelumnya
+            - Menambahkan kode pada `main.html` 
+                ```
+                <table class="center-table" id="product_table"></table>` pada `main.html`
+                ```
+
+        - [x] **Lakukan pengambilan task menggunakan AJAX GET.**
+            - Membuat fungsi `get_product_json` pada `views.py`
+                ```
+                def get_product_json(request):
+                    product_item = Product.objects.all()
+                    return HttpResponse(serializers.serialize('json', product_item))
+                ```
+                - Melakukan routing terhadap fungsi `get_product_json` dengan menambahkan kode `from main.views import get_product_json` dan menambahkan path url `path('get-product/', get_product_json, name='get_product_json'),` pada `urls.py`di subdirektori `main`
+                - Menambahkan kode dibawah pada bagian `<script>` di `main.html`
+                ```
+                async function getProducts() {
+                    return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+                }
+                ```
+
+
+    - [x] **AJAX POST**
+        - [x] **Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.**
+            - Membuat modal dengan menambahkan kode dibawah pada `main.html`
+                ```
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form" onsubmit="return false;">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="name" class="col-form-label">Name:</label>
+                                        <input type="text" class="form-control" id="name" name="name"></input>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="col-form-label">Amount:</label>
+                                        <input type="number" class="form-control" id="amount" name="amount"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="description" name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ```
+            - Membuat button untuk mengakses modal dengan menambahkan kode 
+                ```
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+                ```
+        - [x] **Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.**
+            - Mengimport `from django.views.decorators.csrf`
+            - Membuat fungsi `add_product_ajax` pada `views.py`
+                ```
+                @csrf_exempt
+                    def add_product_ajax(request):
+                        if request.method == 'POST':
+                            name = request.POST.get("name")
+                            amount = request.POST.get("amount")
+                            description = request.POST.get("description")
+                            user = request.user
+
+                            new_product = Product(name=name, amount=amount, description=description, user=user)
+                            new_product.save()
+
+                            return HttpResponse(b"CREATED", status=201)
+
+                        return HttpResponseNotFound()
+                ```
+            
+        - [x] **Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.**
+            - Mengimport fungsi `add_product_ajax` pada `urls.py`
+                ```
+                from main.views import add_product_ajax
+                ```
+            - Melakukan routing dengan menambahkan path url
+                ```
+                path('create-ajax/', add_product_ajax, name='add_product_ajax'),
+                ```
+        - [x] **Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/**
+
+            Menambahkan fungsi `addProduct` pada `<script>` di `main.html`
+
+                function addProduct() {
+                    fetch("{% url 'main:add_product_ajax' %}", {
+                        method: "POST",
+                        body: new FormData(document.querySelector('#form'))
+                    }).then(refreshProducts)
+
+                    document.getElementById("form").reset()
+                    return false
+                }
+        - [x] **Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.**
+
+            Menambahkan fungsi `refreshProducts` pada `<script>` di `main.html`
+            ```
+            async function refreshProducts() {
+                    document.getElementById("product_table").innerHTML = ""
+                    const products = await getProducts()
+                    let htmlString = `<tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>`
+                    
+                    products.forEach((item) => {
+                        console.log(item)
+                        htmlString += `\n<tr>
+                        <td>${item.fields.name}</td>
+                        <td>${item.fields.description}</td>
+                        <td>${item.fields.amount}</td>
+                        <td>
+
+                        <a href="edit-product/${item.pk}">
+                            <button>
+                                Edit
+                            </button>
+                        </a>
+
+                        <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
+                            Delete
+                        </button>
+
+                        </td>
+                    </tr>`
+                    })
+
+                    document.getElementById("product_table").innerHTML = htmlString
+                }
+                ```
+
+    - [x] **Melakukan perintah collectstatic**
+        - Menambahkan kode dibawah pada `settings.py`
+            ```
+            STATIC_URL = 'static/'
+            STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+            ```
+        - Menjalankan `python 3 manage.py collectstatic`
+
+-[x] **Menjawab pertanyaan**
+- **Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.**
+
+    **Asynchronous Programming**
+
+    - Tugas-tugas dieksekusi secara independen
+    - Waktu eksekusi lebih cepat karena tidak perlu menunggu tugas lain selesai sebelum melanjutkan ke tugas berikutnya
+    - Memerlukan pemahaman mendalam mengenai konsep callback dan promise
+    - Cocok untuk aplikasi web yang memerlukan response time yang cepat dan efisien seperti aplikasi real-time atau streaming
+   
+    **Synchronous Programming**
+
+    - Tugas-tugas dieksekusi satu persatu secara berurutan
+    - Waktu eksekusi lebih lama karena dalam pengerjaan suatu tugas harus menunggu tugas lain selesai dikerjakan
+    - Lebih mudah dipahami dan diimplementasikan
+    - Cocok digunakan untuk aplikasi yang memerlukan urutan eksekusi yang terstruktur dan jelas seperti mobile app atau desktop app
+
+- **Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.**
+
+    Dalam penerapan JavaScript dan AJAX, paradigma _event-driven programming_ berguna untuk membangun aplikasi web yang responsif dan interaktif yang menggunakan event sebagai pemicu dalam eksekusi kode. Paradigma ini berbeda dengan program yang sifatnya prosedural karena program akan berjalan sesuai dengan events yang di-_trigger_. Pada tugas ini, contoh penerapannya ada pada button yang menjalankan fungsi `addProduct()` dan `deleteProduct(pk)` yang akan dijalankan jika button `Add Product` dan `Delete` di-_click_.
+    
+
+- **Jelaskan penerapan asynchronous programming pada AJAX.**
+
+    Asynchronous programming pada AJAX mengacu pada kemampuan AJAX untuk mengirim dan menerima data dari server tanpa perlu melakukan reload halaman keseluruhan. Hal ini cukup penting dalam pengembangan web karena memungkinkan web app untuk berinteraksi dengan server secara dinamis tanpa harus mereaload page yang meningkatkan _response time_ dan _user experience_.
+
+- **Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.**
+
+    **Fetch API**
+    - Lebih ringan dan cepat, tidak memerlukan library tambahan
+    - Lebih mudah dalam penggunaan karena menggunakan Promise
+    - Mendukung format JSON dan XML
+    - Tidak men _support_ fitur _cross-domain request_ pada browser yang lebih lama
+    - Tidak men _support_ fitur timeout pada browser lama
+
+    **jQuery**
+    - Lebih berat karena memerlukan library tambahan
+    - Lebih sulit penggunaannya
+    - Mendukung format JSON, XML, dan HTML
+    - Men _support_ fitur _cross-domain request_ pada browser lama
+    - Men _support_ fitur timeout pada browser lama
+
+    Menurut saya, Fetch API lebih baik karena lebih mudah digunakan karena menggunakan Promise. Selain itu, Fetch API lebih ringan sehingga lebih cepat dibandingkan dengan jQuery.  
+
+- [x] **Menambahkan fungsionalitas hapus dengan menggunakan AJAX DELETE**
+    - Membuat fungsi `delete_product_ajax` pada `views.py`
+        ```
+        @csrf_exempt
+        def delete_product_ajax(request, id):
+            product = Product.objects.get(pk=id)
+            product.delete()
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            return response
+        ```
+    - Mengimport fungsi pada `urls.py` dengan menambahkan `from main.views import delete_product_ajax`
+    - Menambahkan path URL dengan menambahkan kode
+        ```
+        path('delete_product_ajax/<int:id>', delete_product_ajax, name='delete_product_ajax')
+        ```
+    - Menambahkan button `delete` di `main.html`
+        ```
+        <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
+            Delete
+        </button>
+        ```
+    - Menambahkan kode dibawah pada `<script>` 
+        ```
+        function deleteProduct(pk) {
+            fetch(`/delete_product_ajax/${pk}`, {
+                method: 'DELETE',
+            }).then(refreshProducts);
+        }
+         ```
