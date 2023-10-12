@@ -20,7 +20,20 @@
         border: none;
     }
 
-    .center-table {
+    .btn-delete {
+        border-radius: 8 px;
+    }
+
+    .card {
+        box-shadow: 1px 4px 5px #e7e7e7;
+        border-color: #fcfcfc;
+    }
+
+    /* p {
+        color: #3FCCD4;
+    } */
+
+    /* .center-table {
         border-collapse: collapse;
         margin: 0 auto;
         width: 80%;
@@ -42,13 +55,13 @@
         color: #000000;
         border: 2px solid rgb(255, 255, 255);
         text-align: center;
-    }
+    } */
 
-    table tr:last-child {
+    /* table tr:last-child {
         background-color: rgba(63, 204, 212, 0.312);
         color: #000000;
         border: 2px solid rgb(255, 255, 255);
-    }
+    } */
 
     .navbar {
         display: flex;
@@ -98,11 +111,18 @@
         background-color: #3FCCD4;
         border: none;
         border-radius: 12px;
+        height: 38px;
     }
 
     .col-form-label {
         font-family: 'poppins', sans-serif;
     }
+
+    .product-name {
+        font-weight: bold;
+        font-size: 24px;
+    }
+    
 </style>
 
 <nav class="navbar navbar-expand-lg">
@@ -118,7 +138,29 @@
     </div>
 </nav>
 
-<table class="center-table" id="product_table"></table>
+<card class="product-cards" id="product_cards"></card>
+
+<div class="container">
+    <div class="row">
+        <h1 class="center-text">Product List</h1>
+            <div class="row">
+
+                {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p class="product-name">{{product.name}}</p>
+                            <p class="product-description">{{product.description}}</p>
+                            <p class="product-amount">Amount: {{product.amount}}</p>
+                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary">Edit</a>
+                            <button type="button" class="btn btn-primary" onclick="deleteProduct({{ product.pk }})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -166,38 +208,33 @@
     }
 
     async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = ""
+        document.getElementById("products-card").innerHTML = ""
         const products = await getProducts()
         let htmlString = `<tr>
             <th>Name</th>
             <th>Description</th>
             <th>Amount</th>
-            <th>Actions</th>
         </tr>`
         
-        products.forEach((item) => {
-            console.log(item)
+        products.forEach((product) => {
+            console.log(product)
             htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.description}</td>
-            <td>${item.fields.amount}</td>
+            <td>${product.fields.name}</td>
+            <td>${product.fields.description}</td>
+            <td>${product.fields.amount}</td>
             <td>
 
-            <a href="edit-product/${item.pk}">
+            <a href="edit-product/${product.pk}">
                 <button>
                     Edit
                 </button>
             </a>
 
-            <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
-                Delete
-            </button>
-
             </td>
         </tr>`
         })
 
-        document.getElementById("product_table").innerHTML = htmlString
+        document.getElementById("button_add").innerHTML = htmlString
     }
 
     refreshProducts()
@@ -216,6 +253,7 @@
         fetch(`/delete_product_ajax/${pk}`, {
             method: 'DELETE',
         }).then(refreshProducts);
+        alert("Product has been deleted");
     }
     
     document.getElementById("button_add").onclick = addProduct

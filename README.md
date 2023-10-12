@@ -552,11 +552,33 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
 
 - [x] **Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX**
     - [x] **AJAX GET**
-        - [x] **Ubahlah kode tabel data item agar dapat mendukung AJAX GET.**
+        - [x] **Ubahlah kode cards data item agar dapat mendukung AJAX GET.**
             - Menghapus kode tabel yang telah ada sebelumnya
-            - Menambahkan kode pada `main.html` 
+            - Menambahkan kode untuk cards pada `main.html` 
                 ```
-                <table class="center-table" id="product_table"></table>` pada `main.html`
+                <card class="product-cards" id="product_cards"></card>
+
+                <div class="container">
+                    <div class="row">
+                        <h1 class="center-text">Product List</h1>
+                            <div class="row">
+
+                                {% for product in products %}
+                                <div class="col-md-4">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <p class="product-name">{{product.name}}</p>
+                                            <p class="product-description">{{product.description}}</p>
+                                            <p class="product-amount">Amount: {{product.amount}}</p>
+                                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary">Edit</a>
+                                            <button type="button" class="btn btn-primary" onclick="deleteProduct({{ product.pk }})">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
                 ```
 
         - [x] **Lakukan pengambilan task menggunakan AJAX GET.**
@@ -662,40 +684,35 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
             Menambahkan fungsi `refreshProducts` pada `<script>` di `main.html`
             ```
             async function refreshProducts() {
-                    document.getElementById("product_table").innerHTML = ""
-                    const products = await getProducts()
-                    let htmlString = `<tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Actions</th>
-                    </tr>`
-                    
-                    products.forEach((item) => {
-                        console.log(item)
-                        htmlString += `\n<tr>
-                        <td>${item.fields.name}</td>
-                        <td>${item.fields.description}</td>
-                        <td>${item.fields.amount}</td>
-                        <td>
+                document.getElementById("products-card").innerHTML = ""
+                const products = await getProducts()
+                let htmlString = `<tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>`
+                
+                products.forEach((product) => {
+                    console.log(product)
+                    htmlString += `\n<tr>
+                    <td>${product.fields.name}</td>
+                    <td>${product.fields.description}</td>
+                    <td>${product.fields.amount}</td>
+                    <td>
 
-                        <a href="edit-product/${item.pk}">
-                            <button>
-                                Edit
-                            </button>
-                        </a>
-
-                        <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
-                            Delete
+                    <a href="edit-product/${product.pk}">
+                        <button>
+                            Edit
                         </button>
+                    </a>
 
-                        </td>
-                    </tr>`
-                    })
+                    </td>
+                </tr>`
+                })
 
-                    document.getElementById("product_table").innerHTML = htmlString
-                }
-                ```
+                document.getElementById("button_add").innerHTML = htmlString
+            }
+            ```
 
     - [x] **Melakukan perintah collectstatic**
         - Menambahkan kode dibawah pada `settings.py`
@@ -764,17 +781,18 @@ Mengimport `redirect`, `UserCreationForm`, dan `messages` pada `views.py`
         ```
         path('delete_product_ajax/<int:id>', delete_product_ajax, name='delete_product_ajax')
         ```
+    - Menambahkan kode dibawah untuk menghapus product pada `<script>` 
+        ```
+        function deleteProduct(pk) {
+            fetch(`/delete_product_ajax/${pk}`, {
+                method: 'DELETE',
+            }).then(refreshProducts);
+            alert("Product has been deleted");
+        }
+         ```
     - Menambahkan button `delete` di `main.html`
         ```
         <button type="button" class="button" id="button_delete" onClick="deleteProduct(${item.pk})">
             Delete
         </button>
         ```
-    - Menambahkan kode dibawah pada `<script>` 
-        ```
-        function deleteProduct(pk) {
-            fetch(`/delete_product_ajax/${pk}`, {
-                method: 'DELETE',
-            }).then(refreshProducts);
-        }
-         ```
